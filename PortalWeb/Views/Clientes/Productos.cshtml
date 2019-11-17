@@ -1,0 +1,72 @@
+﻿@using PortalWeb.ViewModels
+@model AsociarProductoViewModel
+
+@{
+    List<SelectListItem> productos = new List<SelectListItem>
+    {
+        new SelectListItem
+        {
+            Text = "Tarjeta de crédito",
+            Value = "TC"
+        },
+        new SelectListItem
+        {
+            Text = "Tarjeta de débtio",
+            Value = "TD"
+        },
+        new SelectListItem
+        {
+            Text = "Seguro de vida",
+            Value = "SV"
+        },
+        new SelectListItem
+        {
+            Text = "Seguro de robo",
+            Value = "SR"
+        },
+    };
+}
+<div class="form-group">
+    <label>@Model.Cliente.Nombre + " " + @Model.Cliente.Apellido</label>
+</div>
+
+<div class="form-group">
+    @using (Html.BeginForm("Create", "Productos", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Cliente.Id)
+        @Html.Label("Productos")
+        @Html.DropDownListFor(model => model.TipoProducto, productos)
+        <input type="submit" value="Agregar producto"/>
+   }
+
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Código
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Productos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Delete", "Delete", new { item.Id, Url.Action("AsociarProducto", "Cliente", new { idCliente = Model.Cliente.Id }) })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
