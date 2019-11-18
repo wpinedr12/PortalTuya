@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using PortalWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace PortalWeb.Servicios
     {
         private readonly HttpClient _client;
 
-        const string BaseUrl = "c/";
+        const string BaseUrl = "https://localhost:44303/api/";
 
         public AsociarProductoServicio(IHttpClientFactory clientFactory)
         {
